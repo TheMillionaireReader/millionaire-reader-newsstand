@@ -149,8 +149,8 @@ export default function Home() {
                 return (
                   <article className="mag-wrap" key={String(post.id)} style={{ animationDelay: `${index * 65}ms` }}>
                     <button className="mag-button" onClick={() => setSelected(post)} aria-label={`Preview ${post.title}`} style={{ transform: `rotate(${[-1.5, 1, -0.7, 1.4, -1][index % 5]}deg)` }}>
-                      <div className={`mag-cover ${coverStyle(globalIndex)}`}>
-                        <div className="cover-art" />
+                      <div className={`mag-cover ${coverStyle(globalIndex)} ${post.cover_image ? "has-cover-image" : ""}`}>
+                        {post.cover_image ? <img className="mag-cover-image" src={post.cover_image} alt="" loading="lazy" /> : <div className="cover-art" />}
                         <span className="cover-index">The Millionaire Reader · No. {String(posts.length - globalIndex).padStart(2, "0")}</span>
                         <span className="cover-title">{post.title}</span>
                         <span className="cover-subtitle">{post.subtitle || "A note on building the millionaire mind."}</span>
@@ -187,6 +187,7 @@ export default function Home() {
           <button className="modal-close" aria-label="Close preview" onClick={() => setSelected(null)}>×</button>
           <p className="modal-kicker">The Millionaire Reader · {formatDate(selected.post_date)}</p>
           <h2 id="modal-title">{selected.title}</h2>
+          {selected.cover_image && <img className="modal-cover-image" src={selected.cover_image} alt={`Cover artwork for ${selected.title}`} />}
           {selected.subtitle && <p className="modal-subtitle">{selected.subtitle}</p>}
           <div className="modal-rule" />
           <p className="modal-excerpt">{selected.truncated_body_text || "An issue from The Millionaire Reader. Open the original on Substack to read the full essay."}</p>
