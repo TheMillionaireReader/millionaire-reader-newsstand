@@ -203,3 +203,39 @@ body{
  .cover-title{font-size:clamp(22px,7vw,34px)}
  .shelf-rail{margin-top:16px}
 }
+
+/* Lighten the wall: warm chalk / ivory plaster, not dark taupe */
+html,body{background-color:#eeeae2!important}
+body{
+ background-image:
+  radial-gradient(ellipse at 16% 15%,#ffffffb8 0,transparent 42%),
+  radial-gradient(ellipse at 82% 42%,#d9d2c6a1 0,transparent 44%),
+  radial-gradient(ellipse at 42% 83%,#fffdf780 0,transparent 45%),
+  repeating-linear-gradient(94deg,#766a5808 0,#766a5808 1px,transparent 1px,transparent 87px),
+  repeating-linear-gradient(2deg,transparent 0,transparent 72px,#61574a08 73px,#61574a08 74px)!important;
+}
+.brand-mark{
+ width:88px!important;height:88px!important;min-width:88px;
+ background:#090909!important;color:#f5f0e7!important;
+ border:2px solid #080808!important;border-radius:50%!important;
+ display:flex;align-items:center;justify-content:center;
+ position:relative;overflow:hidden;
+ box-shadow:0 3px 8px #1d19121c!important;
+}
+.brand-mark:before{
+ content:"THE MILLIONAIRE READER";position:absolute;inset:5px;
+ border:1px solid #e7dfd0!important;border-radius:50%!important;
+ color:#f5f0e7;font-family:Georgia,serif;font-size:6px;letter-spacing:1.05px;
+ display:flex;align-items:flex-start;justify-content:center;padding-top:5px;
+ white-space:nowrap;
+}
+.brand-mark:after{
+ content:"";position:absolute;inset:13px;border:1px solid #f5f0e766!important;border-radius:50%!important;
+}
+.brand-mark span{
+ width:45px;height:45px;border:1px solid #d9cbb3;border-radius:50%;
+ display:flex;align-items:center;justify-content:center;
+ color:#f7f1e6;font-family:Georgia,serif;font-size:28px;line-height:1;
+ position:relative;z-index:1;
+}
+@media(max-width:560px){.brand-mark{width:68px!important;height:68px!important;min-width:68px}.brand-mark span{width:34px;height:34px;font-size:23px}.brand-mark:before{font-size:4.5px;letter-spacing:.6px}}
