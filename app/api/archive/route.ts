@@ -106,7 +106,7 @@ export async function GET() {
 
   const unique = new Map<string, Post>();
   for (const post of allPosts) unique.set(String(post.id || post.canonical_url), post);
-  const posts = [...unique.values()].sort(
+  const posts = Array.from(unique.values()).sort(
     (a, b) => new Date(b.post_date || 0).getTime() - new Date(a.post_date || 0).getTime()
   );
 
