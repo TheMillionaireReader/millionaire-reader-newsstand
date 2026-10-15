@@ -33,7 +33,8 @@ function xmlText(item: string, tag: string) {
   return match ? decodeEntities(parseXml(match[1]).replace(/<[^>]+>/g, "").trim()) : "";
 }
 function rssPosts(xml: string): Post[] {
-  return [...xml.matchAll(/<item(?:\s[^>]*)?>([\s\S]*?)<\/item>/gi)].map((match, index) => {
+  const matches = Array.from(xml.matchAll(/<item(?:\s[^>]*)?>([\s\S]*?)<\/item>/gi));
+  return matches.map((match, index) => {
     const item = match[1];
     const link = xmlText(item, "link") || SUBSTACK;
     const title = xmlText(item, "title") || "Untitled";
@@ -64,7 +65,6 @@ export async function GET() {
   const allPosts: Post[] = [];
   let archiveFailed = false;
 
-  // Pull bounded pages. A short page ends pagination; a failed request triggers RSS fallback.
   for (let offset = 0; offset < 250; offset += 50) {
     try {
       const response = await fetch(
